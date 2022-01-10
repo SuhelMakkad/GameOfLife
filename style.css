@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(26, 26, 26);
+  font-family: "Press Start 2P", cursive;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.drawing {
+  cursor: url("./pencil-cursor.svg") 0 30, auto !important;
+}
+
+.modal {
+  /* display: none; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.226);
+  backdrop-filter: blur(5px);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.input-wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper .sub-heading {
+  margin-bottom: 1rem;
+}
+
+#gridSizeSlider {
+  cursor: pointer;
+}
+
+#seed-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+#seed-wrapper button {
+  font-size: 1.25rem;
+  padding: 0.25em 0.5em;
+  background-color: rgb(65, 116, 211);
+  transition: background-color 100ms ease;
+  color: white;
+  border-radius: 6px;
+}
+
+#seed-wrapper button:hover {
+  background-color: rgb(38, 101, 218);
+}
+
+#seed-wrapper button.active {
+  background-color: rgb(250, 117, 117);
+}
+
+#seed-wrapper button.active:hover {
+  background-color: rgb(238, 92, 92);
+}
+
+#start-btn {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: tomato;
+  color: white;
+  margin: 1rem auto 0 auto;
+  font-size: 1.12rem;
+  transition: background-color 100ms ease;
+}
+
+#start-btn:hover {
+  background-color: rgb(255, 84, 53);
+}
+
+.bottom-btn {
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  background-color: rgba(187, 119, 250, 0.383);
+  color: white;
+  backdrop-filter: blur(5px);
+  border-radius: 6px;
+  transition: background-color 100ms ease;
+}
+
+#custom-start-btn {
+  background-color: rgba(250, 119, 119, 0.38);
+}
+
+#custom-start-btn:hover {
+  background-color: rgba(245, 91, 91, 0.38);
+}
+
+#reset-btn:hover {
+  background-color: rgba(187, 119, 250, 0.603);
+}
