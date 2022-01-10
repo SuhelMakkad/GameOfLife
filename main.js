@@ -139,8 +139,8 @@ function countNeighbors(grid, x, y) {
   let sum = 0;
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
-      let col = (x + i + cols) % cols;
-      let row = (y + j + rows) % rows;
+      const col = (x + i + cols) % cols;
+      const row = (y + j + rows) % rows;
       sum += grid[col] ? grid[col][row] : 0;
     }
   }
@@ -202,6 +202,7 @@ startBtn.addEventListener("click", () => {
     canvas.classList.add("drawing");
     startDrawing();
   } else {
+    startLife = true;
     resetBtn.style.display = "block";
   }
   initLifeSeed();
