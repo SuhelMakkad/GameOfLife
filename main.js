@@ -53,15 +53,26 @@ function touchstartEventHandler(e) {
   const y = Math.floor(posY / blockSize);
 }
 
-function removeDrawHandlers() {
+function stopDrawing() {
   canvas.removeEventListener("click", mouseClickEventHandler);
   canvas.removeEventListener("touchstart", touchstartEventHandler);
+
+  canvas.classList.remove("drawing");
+  configModal.style.display = "block";
+  resetBtn.style.display = "none";
+  customStartBtn.style.display = "none";
 }
 
 function startDrawing() {
+  // removing previously added listners
+  canvas.removeEventListener("click", mouseClickEventHandler);
+  canvas.removeEventListener("touchstart", touchstartEventHandler);
+
   canvas.addEventListener("click", mouseClickEventHandler);
   canvas.addEventListener("touchstart", touchstartEventHandler);
 
+  canvas.classList.add("drawing");
+  customStartBtn.style.display = "block";
   configModal.style.display = "none";
   resetBtn.style.display = "none";
   customStartBtn.style.display = "block";
@@ -99,27 +110,28 @@ function drawGrid() {
 }
 
 function initLifeSeed() {
+  const midX = Math.floor(cols / 2);
+  const midY = Math.floor(rows / 2);
+
   grid = matrix(rows, cols);
 
   if (seedType === "glider") {
     if (grid[1]) {
-      grid[1][1] = 1;
-      grid[1][3] = 1;
+      grid[1][midY] = 1;
+      grid[1][midY + 3] = 1;
     }
-    if (grid[2]) grid[2][4] = 1;
-    if (grid[3]) grid[3][4] = 1;
+    if (grid[2]) grid[2][midY + 4] = 1;
+    if (grid[3]) grid[3][midY + 4] = 1;
     if (grid[4]) {
-      grid[4][1] = 1;
-      grid[4][4] = 1;
+      grid[4][midY + 1] = 1;
+      grid[4][midY + 4] = 1;
     }
     if (grid[5]) {
-      grid[5][4] = 1;
-      grid[5][3] = 1;
-      grid[5][2] = 1;
+      grid[5][midY + 4] = 1;
+      grid[5][midY + 3] = 1;
+      grid[5][midY + 2] = 1;
     }
   } else if (seedType === "blinker") {
-    const midX = Math.floor(cols / 2);
-    const midY = Math.floor(rows / 2);
     if (grid[midX]) {
       grid[midX][midY] = 1;
       grid[midX][midY - 1] = 1;
@@ -176,7 +188,9 @@ function animate() {
       }
     }
     if (startLife) {
-      grid = next;
+      setTimeout(() => {
+        grid = next;
+      }, 0);
     }
   }
 
@@ -198,39 +212,38 @@ slider.addEventListener("input", (e) => {
 startBtn.addEventListener("click", () => {
   configModal.style.display = "none";
   if (seedType === "custom") {
-    customStartBtn.style.display = "block";
-    canvas.classList.add("drawing");
     startDrawing();
   } else {
     startLife = true;
     resetBtn.style.display = "block";
   }
-  initLifeSeed();
 });
 
 resetBtn.addEventListener("click", () => {
   startLife = false;
-  configModal.style.display = "block";
-  resetBtn.style.display = "none";
-  customStartBtn.style.display = "none";
 
-  canvas.classList.remove("drawing");
-  removeDrawHandlers();
+  stopDrawing();
 });
 
 customStartBtn.addEventListener("click", () => {
   startLife = true;
   resetBtn.style.display = "block";
   customStartBtn.style.display = "none";
+  if (seedType === "custom") {
+    canvas.classList.remove("drawing");
+  }
 });
 
 seedWrapper.addEventListener("click", (e) => {
   const btn = e.target;
   const seed = btn.dataset.seedType;
   if (seed) {
-    seedWrapper.querySelectorAll("button").forEach((btn) => btn.classList.remove("active"));
-    seedType = seed;
+    const activeBtn = seedWrapper.querySelectorAll(".active");
+    activeBtn.forEach((btn) => btn.classList.remove("active"));
     btn.classList.add("active");
+
+    seedType = seed;
+    initLifeSeed();
   }
 });
 
