@@ -19,6 +19,10 @@ button {
   cursor: pointer;
 }
 
+.cp {
+  cursor: pointer;
+}
+
 .drawing {
   cursor: url("./pencil-cursor.svg") 0 30, auto !important;
 }
