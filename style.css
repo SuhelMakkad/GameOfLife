@@ -124,3 +124,8 @@ button {
 #reset-btn:hover {
   background-color: rgba(187, 119, 250, 0.603);
 }
+
+#show-grid-input-wrapper {
+  flex-direction: row;
+  gap: 1rem;
+}

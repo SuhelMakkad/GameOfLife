@@ -18,6 +18,7 @@ const pulsar = document.getElementById("pulsar");
 const pentaDecathlon = document.getElementById("penta-decathlon");
 const customBtn = document.getElementById("custom-btn");
 const seedWrapper = document.getElementById("seed-wrapper");
+const showGridCheckBox = document.getElementById("show-grid");
 
 let blockSize = Number(slider.value) || 50;
 let rows = canvas.height / blockSize;
@@ -26,6 +27,7 @@ let animationId;
 let grid = matrix(rows, cols);
 let seedType = "blinker";
 let startLife = false;
+let showGrid = true;
 
 function mouseClickEventHandler(e) {
   const posX = e.pageX - canvas.offsetLeft;
@@ -193,8 +195,7 @@ function animate() {
       }, 0);
     }
   }
-
-  drawGrid();
+  if (showGrid) drawGrid();
   animationId = window.requestAnimationFrame(animate);
 }
 
@@ -209,12 +210,17 @@ slider.addEventListener("input", (e) => {
   cols = canvas.width / blockSize;
 });
 
+showGridCheckBox.addEventListener("input", (e) => {
+  showGrid = e.target.checked;
+});
+
 startBtn.addEventListener("click", () => {
   configModal.style.display = "none";
   if (seedType === "custom") {
     startDrawing();
   } else {
     startLife = true;
+    initLifeSeed();
     resetBtn.style.display = "block";
   }
 });
