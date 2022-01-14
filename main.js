@@ -10,13 +10,6 @@ const slider = document.getElementById("gridSizeSlider");
 const startBtn = document.getElementById("start-btn");
 const resetBtn = document.getElementById("reset-btn");
 const customStartBtn = document.getElementById("custom-start-btn");
-
-const blinker = document.getElementById("blinker");
-const glider = document.getElementById("glider");
-const beacon = document.getElementById("beacon");
-const pulsar = document.getElementById("pulsar");
-const pentaDecathlon = document.getElementById("penta-decathlon");
-const customBtn = document.getElementById("custom-btn");
 const seedWrapper = document.getElementById("seed-wrapper");
 const showGridCheckBox = document.getElementById("show-grid");
 
@@ -28,32 +21,6 @@ let grid = matrix(rows, cols);
 let seedType = "blinker";
 let startLife = false;
 let showGrid = true;
-
-function mouseClickEventHandler(e) {
-  const posX = e.pageX - canvas.offsetLeft;
-  const posY = e.pageY - canvas.offsetTop;
-
-  const x = Math.floor(posX / blockSize);
-  const y = Math.floor(posY / blockSize);
-
-  console.log({ x, y });
-  console.log(grid[x][y]);
-
-  if (grid[x][y]) {
-    grid[x][y] = 0;
-  } else {
-    grid[x][y] = 1;
-  }
-  console.log(grid[x][y]);
-}
-
-function touchstartEventHandler(e) {
-  const posX = e.touches[0].pageX - canvas.offsetLeft;
-  const posY = e.touches[0].pageY - canvas.offsetTop;
-
-  const x = Math.floor(posX / blockSize);
-  const y = Math.floor(posY / blockSize);
-}
 
 function stopDrawing() {
   canvas.removeEventListener("click", mouseClickEventHandler);
@@ -199,6 +166,32 @@ function animate() {
   animationId = window.requestAnimationFrame(animate);
 }
 
+function mouseClickEventHandler(e) {
+  const posX = e.pageX - canvas.offsetLeft;
+  const posY = e.pageY - canvas.offsetTop;
+
+  const x = Math.floor(posX / blockSize);
+  const y = Math.floor(posY / blockSize);
+
+  console.log({ x, y });
+  console.log(grid[x][y]);
+
+  if (grid[x][y]) {
+    grid[x][y] = 0;
+  } else {
+    grid[x][y] = 1;
+  }
+  console.log(grid[x][y]);
+}
+
+function touchstartEventHandler(e) {
+  const posX = e.touches[0].pageX - canvas.offsetLeft;
+  const posY = e.touches[0].pageY - canvas.offsetTop;
+
+  const x = Math.floor(posX / blockSize);
+  const y = Math.floor(posY / blockSize);
+}
+
 window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
@@ -212,6 +205,19 @@ slider.addEventListener("input", (e) => {
 
 showGridCheckBox.addEventListener("input", (e) => {
   showGrid = e.target.checked;
+});
+
+seedWrapper.addEventListener("click", (e) => {
+  const btn = e.target;
+  const seed = btn.dataset.seedType;
+  if (seed) {
+    const activeBtn = seedWrapper.querySelectorAll(".active");
+    activeBtn.forEach((btn) => btn.classList.remove("active"));
+    btn.classList.add("active");
+
+    seedType = seed;
+    initLifeSeed();
+  }
 });
 
 startBtn.addEventListener("click", () => {
@@ -237,19 +243,6 @@ customStartBtn.addEventListener("click", () => {
   customStartBtn.style.display = "none";
   if (seedType === "custom") {
     canvas.classList.remove("drawing");
-  }
-});
-
-seedWrapper.addEventListener("click", (e) => {
-  const btn = e.target;
-  const seed = btn.dataset.seedType;
-  if (seed) {
-    const activeBtn = seedWrapper.querySelectorAll(".active");
-    activeBtn.forEach((btn) => btn.classList.remove("active"));
-    btn.classList.add("active");
-
-    seedType = seed;
-    initLifeSeed();
   }
 });
 
