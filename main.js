@@ -1,8 +1,8 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+canvas.height = window.innerHeight - 20;
+canvas.width = window.innerWidth - 20;
 
 const blockColor = "rgb(1, 122, 221)";
 const configModal = document.getElementById("config-modal");
