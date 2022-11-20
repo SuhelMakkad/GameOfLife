@@ -1,8 +1,11 @@
-const clearCanvas = (canvas: HTMLCanvasElement) => {
+const clearCanvas = (
+  canvas: HTMLCanvasElement,
+  bgColor: CanvasFillStrokeStyles["fillStyle"] = "rgb(26, 26, 26)"
+) => {
   const ctx = canvas.getContext("2d")!;
   const { height, width } = canvas;
 
-  ctx.fillStyle = "rgb(26, 26, 26)";
+  ctx.fillStyle = bgColor;
   ctx.fillRect(0, 0, width, height);
 };
 
@@ -48,7 +51,7 @@ const drawGrid = (
   cellSize: number,
   height: number,
   width: number,
-  gridStyle = "rgba(256, 256, 256, 0.2)"
+  gridStyle: CanvasFillStrokeStyles["fillStyle"] = "rgba(256, 256, 256, 0.2)"
 ) => {
   for (let i = 0; i < cols; i++) {
     ctx.strokeStyle = gridStyle;

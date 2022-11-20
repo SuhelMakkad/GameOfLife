@@ -1,5 +1,5 @@
 const state = {
-  cellSize: 20,
+  cellSize: 30,
 };
 
 const setState = (callBack: Function) => {
