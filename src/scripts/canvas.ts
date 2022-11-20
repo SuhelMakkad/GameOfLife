@@ -45,7 +45,7 @@ const drawGrid = (
   ctx: CanvasRenderingContext2D,
   cols: number,
   rows: number,
-  blockSize: number,
+  cellSize: number,
   height: number,
   width: number,
   gridStyle = "rgba(256, 256, 256, 0.2)"
@@ -53,15 +53,15 @@ const drawGrid = (
   for (let i = 0; i < cols; i++) {
     ctx.strokeStyle = gridStyle;
     ctx.beginPath();
-    ctx.moveTo(i * blockSize, 0);
-    ctx.lineTo(i * blockSize, height);
+    ctx.moveTo(i * cellSize, 0);
+    ctx.lineTo(i * cellSize, height);
     ctx.stroke();
   }
   for (let i = 0; i < rows; i++) {
     ctx.strokeStyle = gridStyle;
     ctx.beginPath();
-    ctx.moveTo(0, i * blockSize);
-    ctx.lineTo(width, i * blockSize);
+    ctx.moveTo(0, i * cellSize);
+    ctx.lineTo(width, i * cellSize);
     ctx.stroke();
   }
 };
