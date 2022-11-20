@@ -11,15 +11,15 @@ const getInitailSeed = (rows: number, cols: number, type: Seed | null): number[]
   const midY = Math.floor(rows / 2);
 
   if (type === "glider") {
-    newGen[midX + 1][0] = 1;
-    newGen[midX + 1][0 + 3] = 1;
-    newGen[midX + 2][0 + 4] = 1;
-    newGen[midX + 3][0 + 4] = 1;
-    newGen[midX + 4][0 + 1] = 1;
-    newGen[midX + 4][0 + 4] = 1;
-    newGen[midX + 5][0 + 4] = 1;
-    newGen[midX + 5][0 + 3] = 1;
-    newGen[midX + 5][0 + 2] = 1;
+    newGen[1][midY] = 1;
+    newGen[1][midY + 3] = 1;
+    newGen[2][midY + 4] = 1;
+    newGen[3][midY + 4] = 1;
+    newGen[4][midY + 1] = 1;
+    newGen[4][midY + 4] = 1;
+    newGen[5][midY + 4] = 1;
+    newGen[5][midY + 3] = 1;
+    newGen[5][midY + 2] = 1;
 
     return newGen;
   }
@@ -73,11 +73,6 @@ const getNextGeneration = (currGen: number[][]) => {
     for (let c = 0; c < cols; c++) {
       const state = currGen[r][c];
       const neighbors = countNeighbors(currGen, r, c);
-
-      if (state) {
-        console.log("neighbors, state");
-        console.log({ r, c, neighbors, state }, currGen);
-      }
 
       if (state && (neighbors < 2 || neighbors > 3)) {
         nextGen[r][c] = 0;
