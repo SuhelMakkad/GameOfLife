@@ -1,40 +1,5 @@
 import { getMatrix } from "../grid";
 
-import { Seed } from "./types";
-
-const getInitailSeed = (rows: number, cols: number, type: Seed | null): number[][] => {
-  const newGen = getMatrix(rows, cols);
-
-  if (rows < 15 || cols < 15) return newGen;
-
-  const midX = Math.floor(cols / 2);
-  const midY = Math.floor(rows / 2);
-
-  if (type === "glider") {
-    newGen[1][midY] = 1;
-    newGen[1][midY + 3] = 1;
-    newGen[2][midY + 4] = 1;
-    newGen[3][midY + 4] = 1;
-    newGen[4][midY + 1] = 1;
-    newGen[4][midY + 4] = 1;
-    newGen[5][midY + 4] = 1;
-    newGen[5][midY + 3] = 1;
-    newGen[5][midY + 2] = 1;
-
-    return newGen;
-  }
-
-  if (type === "blinker") {
-    newGen[midX][midY] = 1;
-    newGen[midX][midY - 1] = 1;
-    newGen[midX][midY - 2] = 1;
-
-    return newGen;
-  }
-
-  return newGen;
-};
-
 const countNeighbors = (matrix: number[][], row: number, col: number) => {
   const rows = matrix.length;
   const cols = matrix[0].length;
@@ -101,4 +66,4 @@ const getNextGeneration = (currGen: number[][]) => {
   return nextGen;
 };
 
-export { getInitailSeed, getNextGeneration };
+export { getNextGeneration };

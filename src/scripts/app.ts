@@ -1,5 +1,6 @@
 import { steupCanvas, drawMatrix, drawGrid, clearCanvas } from "./canvas";
-import { getInitailSeed, getNextGeneration } from "./game";
+import { getNextGeneration } from "./game";
+import { getInitailSeed } from "./game/seed";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d")!;
@@ -12,10 +13,10 @@ const aniamte = (ctx: CanvasRenderingContext2D, currGeneration: number[][]) => {
   drawMatrix(ctx, currGeneration, 20);
   drawGrid(ctx, cols, rows, 20, canvas.height, canvas.width);
 
-  window.requestAnimationFrame(() => {
-    clearCanvas(canvas);
-    aniamte(ctx, nextGeneration);
-  });
+  // window.requestAnimationFrame(() => {
+  //   clearCanvas(canvas);
+  //   aniamte(ctx, nextGeneration);
+  // });
 };
 
 const start = () => {
