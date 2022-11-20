@@ -5,7 +5,7 @@ import start from "../app";
 const state: GameState = {
   isPlaying: false,
   cellSize: 30,
-  seedType: "blinker",
+  seedType: "random",
 };
 
 const setState = (callBack: Function) => {

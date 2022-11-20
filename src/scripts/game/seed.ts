@@ -2,6 +2,18 @@ import { getMatrix } from "../grid";
 
 import { Seed } from "./types";
 
+const getRandomSeed = (rows: number, cols: number): number[][] => {
+  const newGen = getMatrix(rows, cols);
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      newGen[r][c] = Math.round(Math.random());
+    }
+  }
+
+  return newGen;
+};
+
 const getBlinkerSeed = (rows: number, cols: number): number[][] => {
   const newGen = getMatrix(rows, cols);
 
@@ -41,6 +53,10 @@ const getInitailSeed = (rows: number, cols: number, type: Seed | null): number[]
 
   if (type === "glider") {
     return getGliderSeed(rows, cols);
+  }
+
+  if (type === "random") {
+    return getRandomSeed(rows, cols);
   }
 
   return getMatrix(rows, cols);
