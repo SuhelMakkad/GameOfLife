@@ -87,7 +87,7 @@ button:focus-visible {
 
 .title {
   text-transform: uppercase;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   text-align: center;
   line-height: 1;
 }
@@ -99,25 +99,19 @@ button:focus-visible {
   margin-top: 1.5rem;
 }
 
-#gridSizeSlider {
+.input-wrapper label {
+  font-size: 0.85rem;
   cursor: pointer;
 }
 
-#seed-wrapper {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+#grid-size-slider {
+  cursor: pointer;
 }
 
-#seed-wrapper button.active {
-  background-color: rgb(250, 117, 117);
-}
-
-#seed-wrapper button.active:hover {
-  background-color: rgb(238, 92, 92);
+#seed-select {
+  font-size: 1.05rem;
+  padding: 0.5em 0.5em;
+  border-radius: 6px;
 }
 
 #start-btn {

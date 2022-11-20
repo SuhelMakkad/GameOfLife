@@ -21,16 +21,8 @@
         <p class="title">Configs</p>
 
         <div class="input-wrapper">
-          <label for="gridSizeSlider" class="sub-heading">Cell Size</label>
-          <input
-            type="range"
-            min="20"
-            max="200"
-            step="1"
-            value="20"
-            name="gridSizeSlider"
-            id="gridSizeSlider"
-          />
+          <label for="grid-size-slider" class="sub-heading">Cell Size</label>
+          <input type="range" min="20" max="200" step="1" value="20" id="grid-size-slider" />
         </div>
 
         <div class="input-wrapper" id="show-grid-input-wrapper">
@@ -39,15 +31,15 @@
         </div>
 
         <div class="input-wrapper">
-          <p class="sub-heading">Seed</p>
-          <div id="seed-wrapper">
-            <button data-seed-type="blinker" id="blinker">Blinker</button>
-            <button data-seed-type="glider" id="glider">Glider</button>
-            <button data-seed-type="beacon" id="beacon">Beacon</button>
-            <button data-seed-type="pulsar" id="pulsar">Pulsar</button>
-            <button data-seed-type="pentaDecathlon" id="penta-decathlon">Penta- decathlon</button>
-            <button data-seed-type="custom" id="custom-btn">Custom</button>
-          </div>
+          <label for="seed-select" class="sub-heading">Seed</label>
+          <select id="seed-select">
+            <option value="blinker" selected>Blinker</option>
+            <option value="glider">Glider</option>
+            <option value="beacon">Beacon</option>
+            <option value="pulsar">Pulsar</option>
+            <option value="pentaDecathlon">Penta- decathlon</option>
+            <option value="custom">Custom</option>
+          </select>
         </div>
 
         <div class="input-wrapper">

@@ -1,6 +1,6 @@
 import { setState, state } from "../state/game";
 
-const slider = document.getElementById("gridSizeSlider") as HTMLInputElement;
+const slider = document.getElementById("grid-size-slider") as HTMLInputElement;
 const startBtn = document.getElementById("start-btn") as HTMLInputElement;
 // const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
 // const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
