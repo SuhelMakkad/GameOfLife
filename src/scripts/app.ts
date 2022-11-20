@@ -33,7 +33,7 @@ const start = () => {
   const rows = Math.round(height / state.cellSize);
   const cols = Math.round(width / state.cellSize);
 
-  const seedGeneration = getInitailSeed(rows, cols, "glider");
+  const seedGeneration = getInitailSeed(rows, cols, state.seedType);
 
   aniamte(ctx, seedGeneration);
 };

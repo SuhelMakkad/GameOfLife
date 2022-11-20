@@ -1,8 +1,11 @@
+import { GameState } from "./type";
+
 import start from "../app";
 
-const state = {
-  cellSize: 30,
+const state: GameState = {
   isPlaying: false,
+  cellSize: 30,
+  seedType: "blinker",
 };
 
 const setState = (callBack: Function) => {
