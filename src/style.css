@@ -1,0 +1,164 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(26, 26, 26);
+  font-family: "Press Start 2P", cursive;
+
+  display: grid;
+  place-content: center;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  padding: 0.3em 1.2em;
+  color: white;
+  font-size: 1.05rem;
+  /* font-family: inherit; */
+  background-color: #1a1a1a;
+
+  transition-property: background-color, border-color;
+  transition: 0.25s ease;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+button:hover {
+  border-color: #1c217a;
+  background-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.modal {
+  /* display: none; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.226);
+  backdrop-filter: blur(5px);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+#gridSizeSlider {
+  cursor: pointer;
+}
+
+#seed-wrapper {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+#seed-wrapper button.active {
+  background-color: rgb(250, 117, 117);
+}
+
+#seed-wrapper button.active:hover {
+  background-color: rgb(238, 92, 92);
+}
+
+#start-btn {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: tomato;
+  color: white;
+  margin: 1rem auto 0 auto;
+  padding: 0;
+  font-size: 1.12rem;
+  transition: background-color 100ms ease;
+}
+
+#start-btn:hover {
+  background-color: rgb(255, 84, 53);
+}
+
+.bottom-btn {
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  background-color: rgba(187, 119, 250, 0.383);
+  color: white;
+  backdrop-filter: blur(5px);
+  border-radius: 6px;
+  transition: background-color 100ms ease;
+}
+
+#custom-start-btn {
+  background-color: rgba(250, 119, 119, 0.38);
+}
+
+#custom-start-btn:hover {
+  background-color: rgba(245, 91, 91, 0.38);
+}
+
+.drawing {
+  cursor: url("./pencil-cursor.svg") 0 30, auto !important;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
