@@ -53,12 +53,26 @@ const countNeighbors = (matrix: number[][], row: number, col: number) => {
   ];
 
   directions.forEach(([i, j]) => {
-    const r = (row + i) % rows;
-    const c = (col + j) % cols;
+    let r = row + i;
+    let c = col + j;
 
-    if (r >= 0 && c >= 0) {
-      sum += matrix[r][c];
+    if (r >= rows) {
+      r = 0;
     }
+
+    if (c >= cols) {
+      c = 0;
+    }
+
+    if (r < 0) {
+      r = rows - 1;
+    }
+
+    if (c < 0) {
+      c = cols - 1;
+    }
+
+    sum += matrix[r][c];
   });
 
   return sum;

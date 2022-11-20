@@ -1,21 +1,28 @@
-import { steupCanvas, drawMatrix } from "./canvas";
+import { steupCanvas, drawMatrix, drawGrid, clearCanvas } from "./canvas";
 import { getInitailSeed, getNextGeneration } from "./game";
 
-const aniamte = (canvas: HTMLCanvasElement, currGeneration: number[][]) => {
+const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const ctx = canvas.getContext("2d")!;
+
+const aniamte = (ctx: CanvasRenderingContext2D, currGeneration: number[][]) => {
   const nextGeneration = getNextGeneration(currGeneration);
-  drawMatrix(canvas, currGeneration, 25);
+  const rows = nextGeneration.length;
+  const cols = nextGeneration[0].length;
+
+  drawMatrix(ctx, currGeneration, 20);
+  drawGrid(ctx, cols, rows, 20, canvas.height, canvas.width);
 
   window.requestAnimationFrame(() => {
-    aniamte(canvas, nextGeneration);
+    clearCanvas(canvas);
+    aniamte(ctx, nextGeneration);
   });
 };
 
 const start = () => {
-  const canvas = document.getElementById("canvas") as HTMLCanvasElement;
-  const seedGeneration = getInitailSeed(20, 20, "blinker");
+  const seedGeneration = getInitailSeed(60, 60, "glider");
 
   steupCanvas(canvas);
-  aniamte(canvas, seedGeneration);
+  aniamte(ctx, seedGeneration);
 };
 
 export default start;

@@ -26,8 +26,7 @@ const drawCell = (
   ctx.fill();
 };
 
-const drawMatrix = (canvas: HTMLCanvasElement, matrix: number[][], cellSize: number) => {
-  clearCanvas(canvas);
+const drawMatrix = (ctx: CanvasRenderingContext2D, matrix: number[][], cellSize: number) => {
   const rows = matrix.length;
   const cols = matrix[0].length;
 
@@ -36,10 +35,35 @@ const drawMatrix = (canvas: HTMLCanvasElement, matrix: number[][], cellSize: num
       const cell = matrix[r][c];
 
       if (cell) {
-        drawCell(canvas.getContext("2d")!, r, c, cellSize);
+        drawCell(ctx, r, c, cellSize);
       }
     }
   }
 };
 
-export { clearCanvas, steupCanvas, drawCell, drawMatrix };
+const drawGrid = (
+  ctx: CanvasRenderingContext2D,
+  cols: number,
+  rows: number,
+  blockSize: number,
+  height: number,
+  width: number,
+  gridStyle = "rgba(256, 256, 256, 0.2)"
+) => {
+  for (let i = 0; i < cols; i++) {
+    ctx.strokeStyle = gridStyle;
+    ctx.beginPath();
+    ctx.moveTo(i * blockSize, 0);
+    ctx.lineTo(i * blockSize, height);
+    ctx.stroke();
+  }
+  for (let i = 0; i < rows; i++) {
+    ctx.strokeStyle = gridStyle;
+    ctx.beginPath();
+    ctx.moveTo(0, i * blockSize);
+    ctx.lineTo(width, i * blockSize);
+    ctx.stroke();
+  }
+};
+
+export { clearCanvas, steupCanvas, drawCell, drawMatrix, drawGrid };
