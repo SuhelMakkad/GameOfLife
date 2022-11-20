@@ -6,6 +6,7 @@ import { state } from "./state/game";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d")!;
+let animationId: number = 0;
 
 const aniamte = (ctx: CanvasRenderingContext2D, currGeneration: number[][]) => {
   const nextGeneration = getNextGeneration(currGeneration);
@@ -15,13 +16,16 @@ const aniamte = (ctx: CanvasRenderingContext2D, currGeneration: number[][]) => {
   drawMatrix(ctx, currGeneration, state.cellSize);
   drawGrid(ctx, cols, rows, state.cellSize, canvas.height, canvas.width);
 
-  window.requestAnimationFrame(() => {
+  if (!state.isPlaying) return;
+
+  animationId = window.requestAnimationFrame(() => {
     clearCanvas(canvas);
     aniamte(ctx, nextGeneration);
   });
 };
 
 const start = () => {
+  cancelAnimationFrame(animationId);
   steupCanvas(canvas);
 
   const { height, width } = canvas;

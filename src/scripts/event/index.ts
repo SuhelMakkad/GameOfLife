@@ -1,7 +1,7 @@
 import { setState, state } from "../state/game";
 
 const slider = document.getElementById("gridSizeSlider") as HTMLInputElement;
-// const startBtn = document.getElementById("start-btn") as HTMLInputElement;
+const startBtn = document.getElementById("start-btn") as HTMLInputElement;
 // const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
 // const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
 // const seedWrapper = document.getElementById("seed-wrapper") as HTMLInputElement;
@@ -15,6 +15,12 @@ const setEventListners = () => {
 
     setState(() => {
       state.cellSize = +cellSize;
+    });
+  });
+
+  startBtn.addEventListener("click", () => {
+    setState(() => {
+      state.isPlaying = true;
     });
   });
 };
