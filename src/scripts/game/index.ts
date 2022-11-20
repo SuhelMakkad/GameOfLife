@@ -35,23 +35,33 @@ const getInitailSeed = (rows: number, cols: number, type: Seed | null): number[]
   return newGen;
 };
 
-const countNeighbors = (matrix: number[][], x: number, y: number) => {
+const countNeighbors = (matrix: number[][], row: number, col: number) => {
   const rows = matrix.length;
   const cols = matrix[0].length;
 
   let sum = 0;
 
-  for (let i = -1; i < 2; i++) {
-    for (let j = -1; j < 2; j++) {
-      const col = (x + i + cols) % cols;
-      const row = (y + j + rows) % rows;
+  const directions = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+    [1, -1],
+    [-1, 1],
+    [-1, -1],
+    [1, 1],
+  ];
 
-      sum += matrix[col] ? matrix[col][row] : 0;
+  directions.forEach(([i, j]) => {
+    const r = (row + i) % rows;
+    const c = (col + j) % cols;
+
+    if (r >= 0 && c >= 0) {
+      sum += matrix[r][c];
     }
-  }
+  });
 
-  sum -= matrix[x][y] || 0;
-  return sum || 0;
+  return sum;
 };
 
 const getNextGeneration = (currGen: number[][]) => {
@@ -61,15 +71,20 @@ const getNextGeneration = (currGen: number[][]) => {
 
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      const state = nextGen[r][c];
-      const neighbors = countNeighbors(nextGen, r, c);
+      const state = currGen[r][c];
+      const neighbors = countNeighbors(currGen, r, c);
 
-      if (!state && neighbors === 3) {
-        if (nextGen[r]) nextGen[r][c] = 1;
-      } else if (state === 1 && (neighbors < 2 || neighbors > 3)) {
-        if (nextGen[r]) nextGen[r][c] = 0;
+      if (state) {
+        console.log("neighbors, state");
+        console.log({ r, c, neighbors, state }, currGen);
+      }
+
+      if (state && (neighbors < 2 || neighbors > 3)) {
+        nextGen[r][c] = 0;
+      } else if (!state && neighbors === 3) {
+        nextGen[r][c] = 1;
       } else {
-        if (nextGen[r]) nextGen[r][c] = state;
+        nextGen[r][c] = state;
       }
     }
   }
