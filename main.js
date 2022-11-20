@@ -13,7 +13,7 @@ const customStartBtn = document.getElementById("custom-start-btn");
 const seedWrapper = document.getElementById("seed-wrapper");
 const showGridCheckBox = document.getElementById("show-grid");
 
-let blockSize = Number(slider.value) || 50;
+let blockSize = Number(slider.value) || 35;
 let rows = canvas.height / blockSize;
 let cols = canvas.width / blockSize;
 let animationId;
@@ -79,10 +79,19 @@ function drawGrid() {
 }
 
 function initLifeSeed() {
+  grid = getSeedFromType(rows, cols, seedType);
+}
+
+function getSeedFromType(rows, cols, type) {
+  const acceptedSeeds = ["glider", "blinker"];
+  const grid = matrix(rows, cols);
+
+  if (acceptedSeeds.indexOf(type) === -1) {
+    return grid;
+  }
+
   const midX = Math.floor(cols / 2);
   const midY = Math.floor(rows / 2);
-
-  grid = matrix(rows, cols);
 
   if (seedType === "glider") {
     if (grid[1]) {
@@ -100,12 +109,15 @@ function initLifeSeed() {
       grid[5][midY + 3] = 1;
       grid[5][midY + 2] = 1;
     }
-  } else if (seedType === "blinker") {
-    if (grid[midX]) {
-      grid[midX][midY] = 1;
-      grid[midX][midY - 1] = 1;
-      grid[midX][midY + 1] = 1;
-    }
+
+    return grid;
+  }
+
+  if (seedType === "blinker") {
+    grid[midX][midY] = 1;
+    grid[midX][midY - 1] = 1;
+    grid[midX][midY + 1] = 1;
+    return grid;
   }
 }
 
