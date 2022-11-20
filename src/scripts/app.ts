@@ -13,13 +13,13 @@ const aniamte = (ctx: CanvasRenderingContext2D, currGeneration: number[][]) => {
   const rows = nextGeneration.length;
   const cols = nextGeneration[0].length;
 
+  clearCanvas(canvas);
   drawMatrix(ctx, currGeneration, state.cellSize);
   drawGrid(ctx, rows, cols, state.cellSize, canvas.height, canvas.width);
 
   if (!state.isPlaying) return;
 
   animationId = window.requestAnimationFrame(() => {
-    clearCanvas(canvas);
     aniamte(ctx, nextGeneration);
   });
 };
