@@ -46,21 +46,22 @@ const drawMatrix = (ctx: CanvasRenderingContext2D, matrix: number[][], cellSize:
 
 const drawGrid = (
   ctx: CanvasRenderingContext2D,
-  cols: number,
   rows: number,
+  cols: number,
   cellSize: number,
   height: number,
   width: number,
   gridStyle: CanvasFillStrokeStyles["fillStyle"] = "rgba(256, 256, 256, 0.2)"
 ) => {
-  for (let i = 0; i < cols; i++) {
+  for (let i = 0; i < rows; i++) {
     ctx.strokeStyle = gridStyle;
     ctx.beginPath();
     ctx.moveTo(i * cellSize, 0);
     ctx.lineTo(i * cellSize, height);
     ctx.stroke();
   }
-  for (let i = 0; i < rows; i++) {
+
+  for (let i = 0; i < cols; i++) {
     ctx.strokeStyle = gridStyle;
     ctx.beginPath();
     ctx.moveTo(0, i * cellSize);

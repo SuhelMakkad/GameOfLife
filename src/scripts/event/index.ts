@@ -11,6 +11,7 @@ const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
 
 const setEventListners = () => {
   slider.value = state.cellSize.toString();
+  seedSelect.value = state.seedType;
 
   slider.addEventListener("input", (e) => {
     const target = e.target as HTMLInputElement;

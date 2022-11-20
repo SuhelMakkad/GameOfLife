@@ -14,7 +14,7 @@ const aniamte = (ctx: CanvasRenderingContext2D, currGeneration: number[][]) => {
   const cols = nextGeneration[0].length;
 
   drawMatrix(ctx, currGeneration, state.cellSize);
-  drawGrid(ctx, cols, rows, state.cellSize, canvas.height, canvas.width);
+  drawGrid(ctx, rows, cols, state.cellSize, canvas.height, canvas.width);
 
   if (!state.isPlaying) return;
 
@@ -30,8 +30,8 @@ const start = () => {
 
   const { height, width } = canvas;
 
-  const rows = Math.round(height / state.cellSize);
-  const cols = Math.round(width / state.cellSize);
+  const cols = Math.round(height / state.cellSize);
+  const rows = Math.round(width / state.cellSize);
 
   const seedGeneration = getInitailSeed(rows, cols, state.seedType);
 
