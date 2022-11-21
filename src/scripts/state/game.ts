@@ -8,6 +8,7 @@ const state: GameState = {
   cellSize: 30,
   seedType: "random",
   customSeed: null,
+  animationId: 0,
 };
 
 const setState = (callBack: Function) => {

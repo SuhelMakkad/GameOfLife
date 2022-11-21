@@ -6,4 +6,5 @@ export type GameState = {
   cellSize: number;
   seedType: Seed;
   customSeed: Generation | null;
+  animationId: number;
 };
