@@ -163,7 +163,7 @@ button:focus-visible {
 }
 
 #game-speed-control-wrapper {
-  position: absolute;
+  position: fixed;
   bottom: 1rem;
   right: 0.75rem;
 
