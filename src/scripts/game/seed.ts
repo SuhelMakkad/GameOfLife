@@ -17,29 +17,66 @@ const getRandomSeed = (rows: number, cols: number): number[][] => {
 const getBlinkerSeed = (rows: number, cols: number): number[][] => {
   const newGen = getMatrix(rows, cols);
 
-  const midX = Math.round(cols / 2);
-  const midY = Math.round(rows / 2);
+  const midY = Math.round(cols / 2);
+  const midX = Math.round(rows / 2);
 
-  newGen[midX][midY] = 1;
-  newGen[midX][midY - 1] = 1;
-  newGen[midX][midY - 2] = 1;
+  const aliveCells = [
+    [midY, midX],
+    [midY, midX - 1],
+    [midY, midX - 2],
+  ];
+
+  aliveCells.forEach(([y, x]) => {
+    newGen[y][x] = 1;
+  });
 
   return newGen;
 };
 
-const getGliderSeed = (rows: number, cols: number): number[][] => {
+const getSpaceshipSeed = (rows: number, cols: number): number[][] => {
   const newGen = getMatrix(rows, cols);
-  const midY = Math.round(rows / 2);
+  const midX = Math.round(rows / 2);
 
-  newGen[1][midY] = 1;
-  newGen[1][midY + 3] = 1;
-  newGen[2][midY + 4] = 1;
-  newGen[3][midY + 4] = 1;
-  newGen[4][midY + 1] = 1;
-  newGen[4][midY + 4] = 1;
-  newGen[5][midY + 4] = 1;
-  newGen[5][midY + 3] = 1;
-  newGen[5][midY + 2] = 1;
+  const aliveCells = [
+    [1, midX],
+    [1, midX + 3],
+    [2, midX + 4],
+    [3, midX + 4],
+    [4, midX + 1],
+    [4, midX + 4],
+    [5, midX + 4],
+    [5, midX + 3],
+    [5, midX + 2],
+  ];
+
+  aliveCells.forEach(([y, x]) => {
+    newGen[y][x] = 1;
+  });
+
+  return newGen;
+};
+
+const getBeaconSeed = (rows: number, cols: number): number[][] => {
+  const newGen = getMatrix(rows, cols);
+
+  const midY = Math.round(cols / 2);
+  const midX = Math.round(rows / 2);
+
+  const aliveCells = [
+    [midY - 1, midX - 1],
+    [midY - 2, midX - 1],
+    [midY - 2, midX - 2],
+    [midY - 1, midX - 2],
+
+    [midY, midX],
+    [midY + 1, midX],
+    [midY + 1, midX + 1],
+    [midY, midX + 1],
+  ];
+
+  aliveCells.forEach(([y, x]) => {
+    newGen[y][x] = 1;
+  });
 
   return newGen;
 };
@@ -47,16 +84,20 @@ const getGliderSeed = (rows: number, cols: number): number[][] => {
 const getInitailSeed = (rows: number, cols: number, type: Seed | null): number[][] => {
   if (rows < 15 || cols < 15) return getMatrix(rows, cols);
 
+  if (type === "random") {
+    return getRandomSeed(rows, cols);
+  }
+
   if (type === "blinker") {
     return getBlinkerSeed(rows, cols);
   }
 
-  if (type === "glider") {
-    return getGliderSeed(rows, cols);
+  if (type === "spaceship") {
+    return getSpaceshipSeed(rows, cols);
   }
 
-  if (type === "random") {
-    return getRandomSeed(rows, cols);
+  if (type === "beacon") {
+    return getBeaconSeed(rows, cols);
   }
 
   return getMatrix(rows, cols);
