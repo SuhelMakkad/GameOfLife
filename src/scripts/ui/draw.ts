@@ -44,9 +44,8 @@ const startDrawing = () => {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
   const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
   const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
-  console.log("startDrawing");
 
-  // removing previously added listners
+  /* removing previously added listners */
   canvas.removeEventListener("click", mouseClickEventHandler);
   canvas.removeEventListener("touchstart", touchstartEventHandler);
 
