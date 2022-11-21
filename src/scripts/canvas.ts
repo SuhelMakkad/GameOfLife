@@ -85,27 +85,33 @@ const drawGrid = (
   }
 };
 
-const aniamte = (canvas: HTMLCanvasElement, currGeneration: number[][]) => {
+const drawFrame = (canvas: HTMLCanvasElement, currGeneration: number[][]) => {
   const ctx = canvas.getContext("2d")!;
 
-  gameStateFps.now = Date.now();
-  const now = gameStateFps.now;
+  const rows = currGeneration.length;
+  const cols = currGeneration[0].length;
+
+  clearCanvas(canvas);
+  drawMatrix(ctx, currGeneration, state.cellSize);
+
+  if (state.isGridVisible) {
+    drawGrid(ctx, rows, cols, state.cellSize, canvas.height, canvas.width);
+  }
+};
+
+const aniamte = (canvas: HTMLCanvasElement, currGeneration: number[][]) => {
+  let nextGeneration = currGeneration;
+
+  const now = Date.now();
   const elapsed = now - gameStateFps.then;
   const fpsInterval = 1000 / gameStateFps.fps;
 
-  let nextGeneration = currGeneration;
+  gameStateFps.now = now;
   if (elapsed > fpsInterval) {
-    nextGeneration = getNextGeneration(currGeneration);
-    const rows = nextGeneration.length;
-    const cols = nextGeneration[0].length;
-
     gameStateFps.then = now - (elapsed % fpsInterval);
-    clearCanvas(canvas);
-    drawMatrix(ctx, currGeneration, state.cellSize);
 
-    if (state.isGridVisible) {
-      drawGrid(ctx, rows, cols, state.cellSize, canvas.height, canvas.width);
-    }
+    drawFrame(canvas, currGeneration);
+    nextGeneration = getNextGeneration(currGeneration);
   }
 
   if (!state.isPlaying) return;
@@ -123,5 +129,6 @@ export {
   drawMatrix,
   drawGrid,
   getMatrixDimentions,
+  drawFrame,
   aniamte,
 };

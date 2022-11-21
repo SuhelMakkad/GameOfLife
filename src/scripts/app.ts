@@ -1,4 +1,4 @@
-import { steupCanvas, aniamte } from "./canvas";
+import { steupCanvas, aniamte, drawFrame } from "./canvas";
 import { getInitailSeed } from "./game/seed";
 
 import { state } from "./state/game";
@@ -22,6 +22,7 @@ const start = (seedGeneration: number[][] | null) => {
     handleCustomDrawing(state.isPlaying);
   }
 
+  drawFrame(canvas, seedGeneration);
   aniamte(canvas, seedGeneration);
 };
 
