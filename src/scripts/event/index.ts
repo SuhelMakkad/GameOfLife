@@ -2,14 +2,14 @@ import { Seed } from "../game/types";
 import { setState, state } from "../state/game";
 import { showConfigModal, hideConfigModal, showResetBtn, hideResetBtn } from "../ui";
 
-const slider = document.getElementById("grid-size-slider") as HTMLInputElement;
-const startBtn = document.getElementById("start-btn") as HTMLInputElement;
-const seedSelect = document.getElementById("seed-select") as HTMLInputElement;
-const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
-// const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
-// const showGridCheckBox = document.getElementById("show-grid") as HTMLInputElement;
-
 const setEventListners = () => {
+  const slider = document.getElementById("grid-size-slider") as HTMLInputElement;
+  const startBtn = document.getElementById("start-btn") as HTMLInputElement;
+  const seedSelect = document.getElementById("seed-select") as HTMLInputElement;
+  const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
+  // const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
+  // const showGridCheckBox = document.getElementById("show-grid") as HTMLInputElement;
+
   slider.value = state.cellSize.toString();
   seedSelect.value = state.seedType;
 
@@ -33,7 +33,9 @@ const setEventListners = () => {
 
   startBtn.addEventListener("click", () => {
     setState(() => {
-      state.isPlaying = true;
+      if (state.seedType !== "custom") {
+        state.isPlaying = true;
+      }
     });
 
     showResetBtn();

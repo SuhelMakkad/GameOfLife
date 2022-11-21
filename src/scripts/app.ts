@@ -3,6 +3,7 @@ import { getNextGeneration } from "./game";
 import { getInitailSeed } from "./game/seed";
 
 import { state } from "./state/game";
+import { handleCustomDrawing } from "./ui";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d")!;
@@ -34,6 +35,10 @@ const start = () => {
   const rows = Math.round(width / state.cellSize);
 
   const seedGeneration = getInitailSeed(rows, cols, state.seedType);
+
+  if (state.seedType === "custom") {
+    handleCustomDrawing(state.isPlaying);
+  }
 
   aniamte(ctx, seedGeneration);
 };

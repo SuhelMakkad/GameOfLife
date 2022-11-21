@@ -92,6 +92,10 @@ button:focus-visible {
   line-height: 1;
 }
 
+.drawing {
+  cursor: url("/pencil-cursor.svg") 0 30, auto !important;
+}
+
 .input-wrapper {
   display: flex;
   flex-direction: column;
