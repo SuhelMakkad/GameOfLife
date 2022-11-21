@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/GameOfLife/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game of Life</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    
+    <script type="module" crossorigin src="/GameOfLife/assets/index.020e6524.js"></script>
+    <link rel="stylesheet" href="/GameOfLife/assets/index.9937b51c.css">
+  </head>
+  <body>
+    <div id="app">
+      <div id="game-speed-control-wrapper">
+        <label for="game-speed-slider" class="sub-heading">Speed</label>
+        <input type="range" min="1" max="60" step="5" id="game-speed-slider" />
+      </div>
+
+      <div class="modal" id="config-modal">
+        <p class="title">Configs</p>
+
+        <div class="input-wrapper">
+          <label for="grid-size-slider" class="sub-heading">Cell Size</label>
+          <input type="range" min="1" max="50" step="1" id="grid-size-slider" />
+        </div>
+
+        <div class="input-wrapper" id="show-grid-input-wrapper">
+          <label for="show-grid" class="sub-heading cp">Show Grid</label>
+          <input type="checkbox" checked="true" name="showGrid" id="show-grid" class="cp" />
+        </div>
+
+        <div class="input-wrapper">
+          <label for="seed-select" class="sub-heading">Seed</label>
+          <select id="seed-select">
+            <option value="random" selected>Random</option>
+            <option value="pulsar">Pulsar</option>
+            <option value="blinker">Blinker</option>
+            <option value="spaceship">Spaceship</option>
+            <option value="beacon">Beacon</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+
+        <div class="input-wrapper">
+          <button id="start-btn">START</button>
+        </div>
+      </div>
+
+      <button class="bottom-btn" id="reset-btn">RESSET</button>
+      <button class="bottom-btn" id="custom-start-btn">START</button>
+
+      <canvas id="canvas"></canvas>
+    </div>
+
+    
+  </body>
+</html>
