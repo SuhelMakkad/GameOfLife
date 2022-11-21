@@ -1,4 +1,5 @@
 const config = {
+  base: "GameOfLife",
   root: "./",
   build: {
     outDir: "dist",
