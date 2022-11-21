@@ -22,6 +22,8 @@ const setEventListners = () => {
   const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
   const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
   const showGridCheckBox = document.getElementById("show-grid") as HTMLInputElement;
+  const bgMusicBtn = document.getElementById("bg-music-btn") as HTMLInputElement;
+  const bgAudio = document.getElementById("bg-audio") as HTMLAudioElement;
 
   slider.value = state.cellSize.toString();
   gameSpeedSlider.value = gameFpsState.fps.toString();
@@ -75,7 +77,10 @@ const setEventListners = () => {
 
     if (state.seedType === "custom") {
       startDrawing();
+      return;
     }
+
+    startBgAudio();
   });
 
   customStartBtn.addEventListener("click", () => {
@@ -83,6 +88,7 @@ const setEventListners = () => {
       state.isPlaying = true;
     });
 
+    startBgAudio();
     hideCustomStartBtn();
     hideConfigModal();
     showResetBtn();
@@ -95,11 +101,30 @@ const setEventListners = () => {
       state.customSeed = null;
     });
 
+    stopBgAudio();
     showConfigModal();
     hideResetBtn();
     hideCustomStartBtn();
     hideSpeedSlider();
   });
+
+  bgMusicBtn.addEventListener("click", () => {
+    if (bgAudio.paused) {
+      startBgAudio();
+    } else {
+      stopBgAudio();
+    }
+  });
+
+  const startBgAudio = () => {
+    bgAudio.play();
+    document.body.classList.add("bg-audio-playing");
+  };
+
+  const stopBgAudio = () => {
+    bgAudio.pause();
+    document.body.classList.remove("bg-audio-playing");
+  };
 };
 
 export default setEventListners;
