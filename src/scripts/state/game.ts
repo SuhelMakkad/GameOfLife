@@ -4,6 +4,7 @@ import start from "../app";
 
 const state: GameState = {
   isPlaying: false,
+  isGridVisible: true,
   cellSize: 30,
   seedType: "random",
   customSeed: null,

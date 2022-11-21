@@ -16,7 +16,10 @@ const aniamte = (ctx: CanvasRenderingContext2D, currGeneration: number[][]) => {
 
   clearCanvas(canvas);
   drawMatrix(ctx, currGeneration, state.cellSize);
-  drawGrid(ctx, rows, cols, state.cellSize, canvas.height, canvas.width);
+
+  if (state.isGridVisible) {
+    drawGrid(ctx, rows, cols, state.cellSize, canvas.height, canvas.width);
+  }
 
   if (!state.isPlaying) return;
 

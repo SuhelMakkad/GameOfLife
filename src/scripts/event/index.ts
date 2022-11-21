@@ -15,10 +15,11 @@ const setEventListners = () => {
   const seedSelect = document.getElementById("seed-select") as HTMLInputElement;
   const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
   const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
-  // const showGridCheckBox = document.getElementById("show-grid") as HTMLInputElement;
+  const showGridCheckBox = document.getElementById("show-grid") as HTMLInputElement;
 
   slider.value = state.cellSize.toString();
   seedSelect.value = state.seedType;
+  showGridCheckBox.checked = state.isGridVisible;
 
   slider.addEventListener("input", (e) => {
     const target = e.target as HTMLInputElement;
@@ -26,6 +27,15 @@ const setEventListners = () => {
 
     setState(() => {
       state.cellSize = +cellSize;
+    });
+  });
+
+  showGridCheckBox.addEventListener("input", (e) => {
+    const target = e.target as HTMLInputElement;
+    const isChecked = target.checked;
+
+    setState(() => {
+      state.isGridVisible = isChecked;
     });
   });
 
