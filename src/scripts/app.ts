@@ -18,6 +18,8 @@ const start = (seedGeneration: number[][] | null) => {
     seedGeneration = getInitailSeed(rows, cols, state.seedType);
   }
 
+  console.log(state.isPlaying);
+
   if (state.seedType === "custom") {
     handleCustomDrawing(state.isPlaying);
   }

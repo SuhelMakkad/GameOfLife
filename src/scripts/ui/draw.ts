@@ -51,8 +51,6 @@ const startDrawing = () => {
   canvas.addEventListener("click", mouseClickEventHandler);
   canvas.addEventListener("touchstart", touchstartEventHandler);
 
-  canvas.classList.add("drawing");
-
   hideResetBtn();
   showCustomStartBtn();
 };
