@@ -25,16 +25,19 @@ const aniamte = (ctx: CanvasRenderingContext2D, currGeneration: number[][]) => {
   });
 };
 
-const start = () => {
+const start = (seedGeneration: number[][] | null) => {
   cancelAnimationFrame(animationId);
   steupCanvas(canvas);
 
-  const { height, width } = canvas;
+  if (!seedGeneration) {
+    const { height, width } = canvas;
+    const cols = Math.round(height / state.cellSize);
+    const rows = Math.round(width / state.cellSize);
 
-  const cols = Math.round(height / state.cellSize);
-  const rows = Math.round(width / state.cellSize);
+    seedGeneration = getInitailSeed(rows, cols, state.seedType);
+  }
 
-  const seedGeneration = getInitailSeed(rows, cols, state.seedType);
+  console.log("caalled");
 
   if (state.seedType === "custom") {
     handleCustomDrawing(state.isPlaying);

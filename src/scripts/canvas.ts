@@ -1,3 +1,16 @@
+import { state } from "./state/game";
+
+const canvasOffset = { x: 20, y: 20 };
+
+const getMatrixDimentions = () => {
+  const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+  const { height, width } = canvas;
+  const cols = Math.round(height / state.cellSize);
+  const rows = Math.round(width / state.cellSize);
+
+  return { rows, cols };
+};
+
 const clearCanvas = (
   canvas: HTMLCanvasElement,
   bgColor: CanvasFillStrokeStyles["fillStyle"] = "rgb(26, 26, 26)"
@@ -10,8 +23,8 @@ const clearCanvas = (
 };
 
 const steupCanvas = (canvas: HTMLCanvasElement) => {
-  canvas.height = window.innerHeight - 20;
-  canvas.width = window.innerWidth - 20;
+  canvas.height = window.innerHeight - canvasOffset.x;
+  canvas.width = window.innerWidth - canvasOffset.y;
 
   clearCanvas(canvas);
 };
@@ -70,4 +83,12 @@ const drawGrid = (
   }
 };
 
-export { clearCanvas, steupCanvas, drawCell, drawMatrix, drawGrid };
+export {
+  canvasOffset,
+  clearCanvas,
+  steupCanvas,
+  drawCell,
+  drawMatrix,
+  drawGrid,
+  getMatrixDimentions,
+};

@@ -6,11 +6,12 @@ const state: GameState = {
   isPlaying: false,
   cellSize: 30,
   seedType: "random",
+  customSeed: null,
 };
 
 const setState = (callBack: Function) => {
   callBack();
-  start();
+  start(null);
 };
 
 export { state, setState };
