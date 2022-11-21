@@ -35,7 +35,7 @@ const drawCell = (
   x: number,
   y: number,
   cellSize: number,
-  cellColor = "rgb(1, 122, 221)"
+  cellColor = "#40a6ff"
 ) => {
   ctx.beginPath();
   ctx.fillStyle = cellColor;
