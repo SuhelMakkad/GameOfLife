@@ -1,8 +1,8 @@
-import { hideResetBtn, showCustomStartBtn } from ".";
-import start from "../app";
-import { canvasOffset, getMatrixDimentions } from "../canvas";
-import { getMatrix } from "../grid";
 import { state } from "../state/game";
+import start from "../app";
+import { getMatrix } from "../grid";
+import { canvasOffset, getMatrixDimentions } from "../canvas";
+import { hideResetBtn, showCustomStartBtn } from ".";
 
 const getPostion = (posX: number, posY: number) => {
   const x = Math.floor((posX - canvasOffset.x / 2) / state.cellSize);
