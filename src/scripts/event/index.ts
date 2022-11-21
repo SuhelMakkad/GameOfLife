@@ -9,6 +9,8 @@ import {
   showResetBtn,
   hideResetBtn,
   hideCustomStartBtn,
+  showSpeedSlider,
+  hideSpeedSlider,
 } from "../ui";
 import { startDrawing } from "../ui/draw";
 
@@ -69,6 +71,7 @@ const setEventListners = () => {
 
     showResetBtn();
     hideConfigModal();
+    showSpeedSlider();
 
     if (state.seedType === "custom") {
       startDrawing();
@@ -83,6 +86,7 @@ const setEventListners = () => {
     hideCustomStartBtn();
     hideConfigModal();
     showResetBtn();
+    showSpeedSlider();
   });
 
   resetBtn.addEventListener("click", () => {
@@ -94,6 +98,7 @@ const setEventListners = () => {
     showConfigModal();
     hideResetBtn();
     hideCustomStartBtn();
+    hideSpeedSlider();
   });
 };
 

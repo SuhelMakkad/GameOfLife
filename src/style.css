@@ -97,12 +97,12 @@ button:focus-visible {
   cursor: url("/pencil-cursor.svg") 0 30, auto !important;
 }
 
-.game-controls {
+#game-speed-control-wrapper {
   position: absolute;
   bottom: 1rem;
   right: 0.75rem;
 
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 0.25rem;
 
@@ -135,6 +135,7 @@ button:focus-visible {
   font-size: 1.05rem;
   padding: 0.5em 0.5em;
   border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.55);
 }
 
 #start-btn {
