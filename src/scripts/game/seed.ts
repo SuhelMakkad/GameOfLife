@@ -81,6 +81,85 @@ const getBeaconSeed = (rows: number, cols: number): number[][] => {
   return newGen;
 };
 
+const getPulsarSeed = (rows: number, cols: number): number[][] => {
+  const newGen = getMatrix(rows, cols);
+
+  const midY = Math.round(cols / 2);
+  const midX = Math.round(rows / 2);
+
+  const aliveCells = [
+    [midY - 2, midX - 1],
+    [midY - 3, midX - 1],
+    [midY - 4, midX - 1],
+
+    [midY - 2, midX - 6],
+    [midY - 3, midX - 6],
+    [midY - 4, midX - 6],
+
+    [midY - 1, midX - 2],
+    [midY - 1, midX - 3],
+    [midY - 1, midX - 4],
+
+    [midY - 6, midX - 2],
+    [midY - 6, midX - 3],
+    [midY - 6, midX - 4],
+
+    [midY + 2, midX + 1],
+    [midY + 3, midX + 1],
+    [midY + 4, midX + 1],
+
+    [midY + 2, midX + 6],
+    [midY + 3, midX + 6],
+    [midY + 4, midX + 6],
+
+    [midY + 1, midX + 2],
+    [midY + 1, midX + 3],
+    [midY + 1, midX + 4],
+
+    [midY + 6, midX + 2],
+    [midY + 6, midX + 3],
+    [midY + 6, midX + 4],
+
+    [midY - 2, midX + 1],
+    [midY - 3, midX + 1],
+    [midY - 4, midX + 1],
+
+    [midY - 2, midX + 6],
+    [midY - 3, midX + 6],
+    [midY - 4, midX + 6],
+
+    [midY - 1, midX + 2],
+    [midY - 1, midX + 3],
+    [midY - 1, midX + 4],
+
+    [midY - 6, midX + 2],
+    [midY - 6, midX + 3],
+    [midY - 6, midX + 4],
+
+    [midY + 2, midX - 1],
+    [midY + 3, midX - 1],
+    [midY + 4, midX - 1],
+
+    [midY + 2, midX - 6],
+    [midY + 3, midX - 6],
+    [midY + 4, midX - 6],
+
+    [midY + 1, midX - 2],
+    [midY + 1, midX - 3],
+    [midY + 1, midX - 4],
+
+    [midY + 6, midX - 2],
+    [midY + 6, midX - 3],
+    [midY + 6, midX - 4],
+  ];
+
+  aliveCells.forEach(([y, x]) => {
+    newGen[y][x] = 1;
+  });
+
+  return newGen;
+};
+
 const getInitailSeed = (rows: number, cols: number, type: Seed | null): number[][] => {
   if (rows < 15 || cols < 15) return getMatrix(rows, cols);
 
@@ -98,6 +177,10 @@ const getInitailSeed = (rows: number, cols: number, type: Seed | null): number[]
 
   if (type === "beacon") {
     return getBeaconSeed(rows, cols);
+  }
+
+  if (type === "pulsar") {
+    return getPulsarSeed(rows, cols);
   }
 
   return getMatrix(rows, cols);
