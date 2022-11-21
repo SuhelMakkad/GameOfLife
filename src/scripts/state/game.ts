@@ -11,7 +11,8 @@ const state: GameState = {
 
 const setState = (callBack: Function) => {
   callBack();
-  start(null);
+
+  start(state.seedType === "custom" ? state.customSeed : null);
 };
 
 export { state, setState };

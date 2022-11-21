@@ -5,9 +5,19 @@ const showResetBtn = () => {
   resetBtn.style.display = "block";
 };
 
+const showCustomStartBtn = () => {
+  const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
+  customStartBtn.style.display = "block";
+};
+
 const hideResetBtn = () => {
   const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
   resetBtn.style.display = "none";
+};
+
+const hideCustomStartBtn = () => {
+  const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
+  customStartBtn.style.display = "none";
 };
 
 const showConfigModal = () => {
@@ -26,8 +36,14 @@ const handleCustomDrawing = (isPlaying: boolean) => {
   } else {
     document.body.classList.add("drawing");
   }
-
-  startDrawing();
 };
 
-export { showResetBtn, hideResetBtn, showConfigModal, hideConfigModal, handleCustomDrawing };
+export {
+  showResetBtn,
+  showCustomStartBtn,
+  hideResetBtn,
+  hideCustomStartBtn,
+  showConfigModal,
+  hideConfigModal,
+  handleCustomDrawing,
+};

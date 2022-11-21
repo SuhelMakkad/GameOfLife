@@ -1,13 +1,20 @@
 import { Seed } from "../game/types";
 import { setState, state } from "../state/game";
-import { showConfigModal, hideConfigModal, showResetBtn, hideResetBtn } from "../ui";
+import {
+  showConfigModal,
+  hideConfigModal,
+  showResetBtn,
+  hideResetBtn,
+  hideCustomStartBtn,
+} from "../ui";
+import { startDrawing } from "../ui/draw";
 
 const setEventListners = () => {
   const slider = document.getElementById("grid-size-slider") as HTMLInputElement;
   const startBtn = document.getElementById("start-btn") as HTMLInputElement;
   const seedSelect = document.getElementById("seed-select") as HTMLInputElement;
   const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
-  // const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
+  const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
   // const showGridCheckBox = document.getElementById("show-grid") as HTMLInputElement;
 
   slider.value = state.cellSize.toString();
@@ -40,15 +47,31 @@ const setEventListners = () => {
 
     showResetBtn();
     hideConfigModal();
+
+    if (state.seedType === "custom") {
+      startDrawing();
+    }
+  });
+
+  customStartBtn.addEventListener("click", () => {
+    setState(() => {
+      state.isPlaying = true;
+    });
+
+    hideCustomStartBtn();
+    hideConfigModal();
+    showResetBtn();
   });
 
   resetBtn.addEventListener("click", () => {
     setState(() => {
       state.isPlaying = false;
+      state.customSeed = null;
     });
 
-    hideResetBtn();
     showConfigModal();
+    hideResetBtn();
+    hideCustomStartBtn();
   });
 };
 

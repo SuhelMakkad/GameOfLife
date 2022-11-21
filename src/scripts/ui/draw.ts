@@ -1,3 +1,4 @@
+import { hideResetBtn, showCustomStartBtn } from ".";
 import start from "../app";
 import { canvasOffset, getMatrixDimentions } from "../canvas";
 import { getMatrix } from "../grid";
@@ -42,8 +43,6 @@ const touchstartEventHandler = (e: TouchEvent) => {
 
 const startDrawing = () => {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
-  const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
-  const customStartBtn = document.getElementById("custom-start-btn") as HTMLInputElement;
 
   /* removing previously added listners */
   canvas.removeEventListener("click", mouseClickEventHandler);
@@ -53,8 +52,9 @@ const startDrawing = () => {
   canvas.addEventListener("touchstart", touchstartEventHandler);
 
   canvas.classList.add("drawing");
-  resetBtn.style.display = "none";
-  customStartBtn.style.display = "block";
+
+  hideResetBtn();
+  showCustomStartBtn();
 };
 
 export { startDrawing };
