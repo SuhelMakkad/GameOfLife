@@ -1,5 +1,6 @@
 import { getNextGeneration } from "./game";
 import { state } from "./state/game";
+import { state as gameStateFps } from "./state/gameFps";
 
 const canvasOffset = { x: 20, y: 20 };
 
@@ -86,15 +87,25 @@ const drawGrid = (
 
 const aniamte = (canvas: HTMLCanvasElement, currGeneration: number[][]) => {
   const ctx = canvas.getContext("2d")!;
-  const nextGeneration = getNextGeneration(currGeneration);
-  const rows = nextGeneration.length;
-  const cols = nextGeneration[0].length;
 
-  clearCanvas(canvas);
-  drawMatrix(ctx, currGeneration, state.cellSize);
+  gameStateFps.now = Date.now();
+  const now = gameStateFps.now;
+  const elapsed = now - gameStateFps.then;
+  const fpsInterval = 1000 / gameStateFps.fps;
 
-  if (state.isGridVisible) {
-    drawGrid(ctx, rows, cols, state.cellSize, canvas.height, canvas.width);
+  let nextGeneration = currGeneration;
+  if (elapsed > fpsInterval) {
+    nextGeneration = getNextGeneration(currGeneration);
+    const rows = nextGeneration.length;
+    const cols = nextGeneration[0].length;
+
+    gameStateFps.then = now - (elapsed % fpsInterval);
+    clearCanvas(canvas);
+    drawMatrix(ctx, currGeneration, state.cellSize);
+
+    if (state.isGridVisible) {
+      drawGrid(ctx, rows, cols, state.cellSize, canvas.height, canvas.width);
+    }
   }
 
   if (!state.isPlaying) return;

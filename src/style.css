@@ -97,6 +97,24 @@ button:focus-visible {
   cursor: url("/pencil-cursor.svg") 0 30, auto !important;
 }
 
+.game-controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 0.75rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  font-size: 0.75rem;
+  width: 12rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 0.5em 0.75em;
+  border-radius: 6px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
 .input-wrapper {
   display: flex;
   flex-direction: column;

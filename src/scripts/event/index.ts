@@ -1,5 +1,8 @@
 import { Seed } from "../game/types";
+
 import { setState, state } from "../state/game";
+import { state as gameFpsState } from "../state/gameFps";
+
 import {
   showConfigModal,
   hideConfigModal,
@@ -11,6 +14,7 @@ import { startDrawing } from "../ui/draw";
 
 const setEventListners = () => {
   const slider = document.getElementById("grid-size-slider") as HTMLInputElement;
+  const gameSpeedSlider = document.getElementById("game-speed-slider") as HTMLInputElement;
   const startBtn = document.getElementById("start-btn") as HTMLInputElement;
   const seedSelect = document.getElementById("seed-select") as HTMLInputElement;
   const resetBtn = document.getElementById("reset-btn") as HTMLInputElement;
@@ -18,16 +22,24 @@ const setEventListners = () => {
   const showGridCheckBox = document.getElementById("show-grid") as HTMLInputElement;
 
   slider.value = state.cellSize.toString();
+  gameSpeedSlider.value = gameFpsState.fps.toString();
   seedSelect.value = state.seedType;
   showGridCheckBox.checked = state.isGridVisible;
 
   slider.addEventListener("input", (e) => {
     const target = e.target as HTMLInputElement;
-    const cellSize = target.value;
+    const cellSize = +target.value;
 
     setState(() => {
-      state.cellSize = +cellSize;
+      state.cellSize = cellSize;
     });
+  });
+
+  gameSpeedSlider.addEventListener("input", (e) => {
+    const target = e.target as HTMLInputElement;
+    const speed = +target.value;
+
+    gameFpsState.fps = speed;
   });
 
   showGridCheckBox.addEventListener("input", (e) => {
