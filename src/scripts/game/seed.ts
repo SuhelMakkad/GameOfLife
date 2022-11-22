@@ -21,9 +21,9 @@ const getBlinkerSeed = (rows: number, cols: number): number[][] => {
   const midX = Math.round(rows / 2);
 
   const aliveCells = [
-    [midY, midX],
-    [midY, midX - 1],
-    [midY, midX - 2],
+    [midX, midY],
+    [midX, midY - 1],
+    [midX, midY - 2],
   ];
 
   aliveCells.forEach(([y, x]) => {
@@ -35,18 +35,19 @@ const getBlinkerSeed = (rows: number, cols: number): number[][] => {
 
 const getSpaceshipSeed = (rows: number, cols: number): number[][] => {
   const newGen = getMatrix(rows, cols);
-  const midX = Math.round(rows / 2);
+
+  const midY = Math.round(cols / 2);
 
   const aliveCells = [
-    [1, midX],
-    [1, midX + 3],
-    [2, midX + 4],
-    [3, midX + 4],
-    [4, midX + 1],
-    [4, midX + 4],
-    [5, midX + 4],
-    [5, midX + 3],
-    [5, midX + 2],
+    [1, midY - 2],
+    [1, midY + 1],
+    [2, midY + 2],
+    [3, midY + 2],
+    [4, midY - 1],
+    [4, midY + 2],
+    [5, midY + 2],
+    [5, midY + 1],
+    [5, midY + 0],
   ];
 
   aliveCells.forEach(([y, x]) => {
@@ -63,15 +64,14 @@ const getBeaconSeed = (rows: number, cols: number): number[][] => {
   const midX = Math.round(rows / 2);
 
   const aliveCells = [
-    [midY - 1, midX - 1],
-    [midY - 2, midX - 1],
-    [midY - 2, midX - 2],
-    [midY - 1, midX - 2],
-
-    [midY, midX],
-    [midY + 1, midX],
-    [midY + 1, midX + 1],
-    [midY, midX + 1],
+    [midX - 1, midY - 1],
+    [midX - 2, midY - 1],
+    [midX - 2, midY - 2],
+    [midX - 1, midY - 2],
+    [midX, midY],
+    [midX + 1, midY],
+    [midX + 1, midY + 1],
+    [midX, midY + 1],
   ];
 
   aliveCells.forEach(([y, x]) => {
@@ -88,69 +88,69 @@ const getPulsarSeed = (rows: number, cols: number): number[][] => {
   const midX = Math.round(rows / 2);
 
   const aliveCells = [
-    [midY - 2, midX - 1],
-    [midY - 3, midX - 1],
-    [midY - 4, midX - 1],
+    [midX - 2, midY - 1],
+    [midX - 3, midY - 1],
+    [midX - 4, midY - 1],
 
-    [midY - 2, midX - 6],
-    [midY - 3, midX - 6],
-    [midY - 4, midX - 6],
+    [midX - 2, midY - 6],
+    [midX - 3, midY - 6],
+    [midX - 4, midY - 6],
 
-    [midY - 1, midX - 2],
-    [midY - 1, midX - 3],
-    [midY - 1, midX - 4],
+    [midX - 1, midY - 2],
+    [midX - 1, midY - 3],
+    [midX - 1, midY - 4],
 
-    [midY - 6, midX - 2],
-    [midY - 6, midX - 3],
-    [midY - 6, midX - 4],
+    [midX - 6, midY - 2],
+    [midX - 6, midY - 3],
+    [midX - 6, midY - 4],
 
-    [midY + 2, midX + 1],
-    [midY + 3, midX + 1],
-    [midY + 4, midX + 1],
+    [midX + 2, midY + 1],
+    [midX + 3, midY + 1],
+    [midX + 4, midY + 1],
 
-    [midY + 2, midX + 6],
-    [midY + 3, midX + 6],
-    [midY + 4, midX + 6],
+    [midX + 2, midY + 6],
+    [midX + 3, midY + 6],
+    [midX + 4, midY + 6],
 
-    [midY + 1, midX + 2],
-    [midY + 1, midX + 3],
-    [midY + 1, midX + 4],
+    [midX + 1, midY + 2],
+    [midX + 1, midY + 3],
+    [midX + 1, midY + 4],
 
-    [midY + 6, midX + 2],
-    [midY + 6, midX + 3],
-    [midY + 6, midX + 4],
+    [midX + 6, midY + 2],
+    [midX + 6, midY + 3],
+    [midX + 6, midY + 4],
 
-    [midY - 2, midX + 1],
-    [midY - 3, midX + 1],
-    [midY - 4, midX + 1],
+    [midX - 2, midY + 1],
+    [midX - 3, midY + 1],
+    [midX - 4, midY + 1],
 
-    [midY - 2, midX + 6],
-    [midY - 3, midX + 6],
-    [midY - 4, midX + 6],
+    [midX - 2, midY + 6],
+    [midX - 3, midY + 6],
+    [midX - 4, midY + 6],
 
-    [midY - 1, midX + 2],
-    [midY - 1, midX + 3],
-    [midY - 1, midX + 4],
+    [midX - 1, midY + 2],
+    [midX - 1, midY + 3],
+    [midX - 1, midY + 4],
 
-    [midY - 6, midX + 2],
-    [midY - 6, midX + 3],
-    [midY - 6, midX + 4],
+    [midX - 6, midY + 2],
+    [midX - 6, midY + 3],
+    [midX - 6, midY + 4],
 
-    [midY + 2, midX - 1],
-    [midY + 3, midX - 1],
-    [midY + 4, midX - 1],
+    [midX + 2, midY - 1],
+    [midX + 3, midY - 1],
+    [midX + 4, midY - 1],
 
-    [midY + 2, midX - 6],
-    [midY + 3, midX - 6],
-    [midY + 4, midX - 6],
+    [midX + 2, midY - 6],
+    [midX + 3, midY - 6],
+    [midX + 4, midY - 6],
 
-    [midY + 1, midX - 2],
-    [midY + 1, midX - 3],
-    [midY + 1, midX - 4],
+    [midX + 1, midY - 2],
+    [midX + 1, midY - 3],
+    [midX + 1, midY - 4],
 
-    [midY + 6, midX - 2],
-    [midY + 6, midX - 3],
-    [midY + 6, midX - 4],
+    [midX + 6, midY - 2],
+    [midX + 6, midY - 3],
+    [midX + 6, midY - 4],
   ];
 
   aliveCells.forEach(([y, x]) => {
